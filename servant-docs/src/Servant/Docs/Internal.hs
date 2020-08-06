@@ -1054,29 +1054,29 @@ instance ToSample Bool
 instance ToSample Ordering
 
 -- polymorphic ToSample instances
-instance (ToSample a, ToSample b) => ToSample (a, b)
-instance (ToSample a, ToSample b, ToSample c) => ToSample (a, b, c)
-instance (ToSample a, ToSample b, ToSample c, ToSample d) => ToSample (a, b, c, d)
-instance (ToSample a, ToSample b, ToSample c, ToSample d, ToSample e) => ToSample (a, b, c, d, e)
-instance (ToSample a, ToSample b, ToSample c, ToSample d, ToSample e, ToSample f) => ToSample (a, b, c, d, e, f)
-instance (ToSample a, ToSample b, ToSample c, ToSample d, ToSample e, ToSample f, ToSample g) => ToSample (a, b, c, d, e, f, g)
+instance {-# OVERLAPPABLE #-} (ToSample a, ToSample b) => ToSample (a, b)
+instance {-# OVERLAPPABLE #-} (ToSample a, ToSample b, ToSample c) => ToSample (a, b, c)
+instance {-# OVERLAPPABLE #-} (ToSample a, ToSample b, ToSample c, ToSample d) => ToSample (a, b, c, d)
+instance {-# OVERLAPPABLE #-} (ToSample a, ToSample b, ToSample c, ToSample d, ToSample e) => ToSample (a, b, c, d, e)
+instance {-# OVERLAPPABLE #-} (ToSample a, ToSample b, ToSample c, ToSample d, ToSample e, ToSample f) => ToSample (a, b, c, d, e, f)
+instance {-# OVERLAPPABLE #-} (ToSample a, ToSample b, ToSample c, ToSample d, ToSample e, ToSample f, ToSample g) => ToSample (a, b, c, d, e, f, g)
 
-instance ToSample a => ToSample (Maybe a)
-instance (ToSample a, ToSample b) => ToSample (Either a b)
-instance ToSample a => ToSample [a]
+instance {-# OVERLAPPABLE #-} ToSample a => ToSample (Maybe a)
+instance {-# OVERLAPPABLE #-} (ToSample a, ToSample b) => ToSample (Either a b)
+instance {-# OVERLAPPABLE #-} ToSample a => ToSample [a]
 
 -- ToSample instances for Control.Applicative types
-instance ToSample a => ToSample (Const a b)
-instance ToSample a => ToSample (ZipList a)
+instance {-# OVERLAPPABLE #-} ToSample a => ToSample (Const a b)
+instance {-# OVERLAPPABLE #-} ToSample a => ToSample (ZipList a)
 
 -- ToSample instances for Data.Monoid newtypes
 instance ToSample All
 instance ToSample Any
-instance ToSample a => ToSample (Sum a)
-instance ToSample a => ToSample (Product a)
-instance ToSample a => ToSample (First a)
-instance ToSample a => ToSample (Last a)
-instance ToSample a => ToSample (Dual a)
+instance {-# OVERLAPPABLE #-} ToSample a => ToSample (Sum a)
+instance {-# OVERLAPPABLE #-} ToSample a => ToSample (Product a)
+instance {-# OVERLAPPABLE #-} ToSample a => ToSample (First a)
+instance {-# OVERLAPPABLE #-} ToSample a => ToSample (Last a)
+instance {-# OVERLAPPABLE #-} ToSample a => ToSample (Dual a)
 
 -- $setup
 -- >>> :set -XOverloadedStrings
